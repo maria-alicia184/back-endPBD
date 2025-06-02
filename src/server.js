@@ -7,8 +7,8 @@ dotenv.config();
 const app = express();
 app.use(cors());
 
-const password = process.env.PASS;
-const username = process.env.USER;
+const password = process.env.MONGO_PASS;
+const username = process.env.MONGO_USER;
 
 mongoose.connect(
     `mongodb+srv://${username}:${password}@cluster0.plw98kj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
@@ -20,7 +20,7 @@ db.on("connected", () => {
     console.log("Banco de dados conectado com sucesso!");
 })
 
-db.on("error", () => {
+db.on("error", (error) => {
     console.log("Erro ao conectar: ", error);
 })
 
